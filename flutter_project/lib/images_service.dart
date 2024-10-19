@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
 class ImageService {
+  String apiAdress = 'http://192.168.162.130:5000/';
   final Dio _dio = Dio(BaseOptions(
     connectTimeout: const Duration(milliseconds: 10000),
     receiveTimeout: const Duration(milliseconds: 30000),
@@ -12,7 +13,7 @@ class ImageService {
   // Resim yükleme metodu
   Future<Uint8List?> uploadImage(File selectedImage) async {
     try {
-      String apiUrl = 'localhost/process_image';
+      String apiUrl = '${apiAdress}process_image';
       String fileName = selectedImage.path.split('/').last;
 
       FormData formData = FormData.fromMap({
@@ -43,7 +44,7 @@ class ImageService {
 
   Future<String?> uploadVideo(File selectedVideo) async {
     try {
-      String apiUrl = 'http://192.168.162.130:5000/process_video';
+      String apiUrl = '${apiAdress}process_video';
       String fileName = selectedVideo.path.split('/').last;
 
       // Video dosyasını form-data'ya ekliyoruz
