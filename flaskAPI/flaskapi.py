@@ -1,4 +1,6 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file,jsonify
+from tempfile import NamedTemporaryFile
+from action_recognition import run
 from PIL import Image
 import io
 import yolo_v3 
@@ -6,7 +8,7 @@ import yolo_v3
 
 
 app = Flask(__name__)
-@app.route('/process-image', methods=['POST'])
+@app.route('/process_image', methods=['POST'])
 def process_image_route():
     if 'image' not in request.files:
         return "No image part", 400
@@ -25,6 +27,38 @@ def process_image_route():
 
     except Exception as e:
         return str(e), 500
+
+@app.route('/process_video', methods=['POST'])
+def process_video():
+    if 'video' not in request.files:
+        return jsonify({"error": "No video file found"}), 400
+
+    # Video dosyasını al ve geçici bir dosyaya kaydet
+    video_file = request.files['video']
+    temp_video = NamedTemporaryFile(delete=False, suffix=".mp4")
+    video_path = temp_video.name
+    video_file.save(video_path)
+    
+    run(
+        weights="yolo11n.pt",
+        device="cuda",  # GPU'yu kullanmak için 'cuda' belirttik
+        source= video_path,  # Girdi video dosyası
+        output_path="output_video.mp4",  # İşlenmiş video çıkış dosyası
+        crop_margin_percentage=10,
+        num_video_sequence_samples=8,
+        skip_frame=2,
+        video_cls_overlap_ratio=0.25,
+        fp16=False,
+        video_classifier_model="microsoft/xclip-base-patch32",
+        labels=["walking", "running", "jumping"]
+    )
+    
+
+    # YOLOv8 Region Counter dosyasındaki fonksiyonu çağırarak videoyu işle
+    processed_video_path = "output_video.mp4"
+
+    # İşlenmiş videoyu API üzerinden döndür
+    return send_file(processed_video_path, as_attachment=True, download_name="processed_video.mp4")
 
 
 if __name__ == '__main__':

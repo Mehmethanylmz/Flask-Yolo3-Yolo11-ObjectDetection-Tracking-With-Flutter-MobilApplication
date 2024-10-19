@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   dio: ^5.7.0
   image_picker: ^1.1.2
+  video_player: ^2.5.1
+  path_provider: ^2.1.4
 
 
 dev_dependencies:
