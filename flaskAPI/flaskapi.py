@@ -26,6 +26,7 @@ def process_image_route():
         return send_file(img_io, mimetype='image/png')
 
     except Exception as e:
+        print(e)
         return str(e), 500
 
 @app.route('/process_video', methods=['POST'])

@@ -12,7 +12,7 @@ class ImageService {
   // Resim yükleme metodu
   Future<Uint8List?> uploadImage(File selectedImage) async {
     try {
-      String apiUrl = 'http://192.168.162.130:5000/process_image';
+      String apiUrl = 'localhost/process_image';
       String fileName = selectedImage.path.split('/').last;
 
       FormData formData = FormData.fromMap({
