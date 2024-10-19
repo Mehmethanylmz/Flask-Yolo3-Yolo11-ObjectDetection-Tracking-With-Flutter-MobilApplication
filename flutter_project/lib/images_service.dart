@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
 class ImageService {
-  String apiAdress = 'http://192.168.162.130:5000/';
+  String apiAdress = 'localhost/';
   final Dio _dio = Dio(BaseOptions(
     connectTimeout: const Duration(milliseconds: 10000),
     receiveTimeout: const Duration(milliseconds: 30000),
