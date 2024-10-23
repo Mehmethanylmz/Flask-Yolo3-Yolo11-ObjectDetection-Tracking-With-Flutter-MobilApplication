@@ -25,11 +25,7 @@ git clone https://github.com/Mehmethanylmz/Flask-Yolo3-Yolo11-ObjectDetection-Tr
 ```
 
 ### 2. Gerekli Python Kütüphanelerini Kurun
-Flask API'nin çalışabilmesi için gerekli Python kütüphanelerini kurmanız gerekmektedir. Kütüphaneleri kurmak için projenin ana dizinine gidip şu komutu çalıştırın:
-
-```bash
-pip install -r requirements.txt
-```
+Flask API'nin çalışabilmesi için gerekli Python kütüphanelerini kurmanız gerekmektedir. 
 ### 3. YOLOv3 Model Dosyasını İndirin
 Proje için gerekli YOLOv3 model dosyasını flaskAPI/data klasörü içerisine indirmeniz gerekmektedir. Aşağıdaki adımları takip ederek model dosyasını indirin:
 https://drive.google.com/file/d/1MAsvscvEfTORxP8DeFtQvc5cgEzUEfIl/view?usp=sharing
