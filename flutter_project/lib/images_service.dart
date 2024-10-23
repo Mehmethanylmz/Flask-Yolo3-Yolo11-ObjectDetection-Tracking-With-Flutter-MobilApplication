@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 
 class ImageService {
   String apiAdress = 'localhost/';
+  //Emülatörde çalıştırmak için apiAdress: 'http://10.0.2.2:5000/'
   final Dio _dio = Dio(BaseOptions(
     connectTimeout: const Duration(milliseconds: 10000),
     receiveTimeout: const Duration(milliseconds: 30000),

@@ -42,7 +42,7 @@ def process_video():
     
     run(
         weights="yolo11n.pt",
-        device="cuda",  # GPU'yu kullanmak için 'cuda' belirttik
+        device="cpu",  # GPU'yu kullanmak için 'cuda' yazmak gerekir
         source= video_path,  # Girdi video dosyası
         output_path="output_video.mp4",  # İşlenmiş video çıkış dosyası
         crop_margin_percentage=10,
